@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apps MMM - Himnario y Doctrinario</title>
+  <meta name="description" content="Descarga las apps del Movimiento Misionero Mundial: Himnario 3M y Doctrinario 3M.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#f3f7fc; --bg2:#e8eff8; --card:#ffffff; --text:#182230; --muted:#64748b;
+      --primary:#2c5fa8; --primary-dark:#1e3a5f; --accent:#8ec5fc;
+      --shadow:0 20px 50px rgba(30,58,95,.10); --radius:28px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Inter',system-ui,-apple-system,sans-serif; color:var(--text);
+      background:
+        radial-gradient(900px 500px at 10% -10%, rgba(142,197,252,.35), transparent 60%),
+        radial-gradient(700px 400px at 100% 0%, rgba(44,95,168,.12), transparent 55%),
+        linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
+      min-height:100vh;
+    }
+    .wrap{width:min(1140px,calc(100% - 40px));margin:0 auto}
+    .hero{padding:56px 0 30px;text-align:center}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid rgba(44,95,168,.12);color:var(--primary-dark);font-size:12px;font-weight:700;letter-spacing:.08em;backdrop-filter:blur(8px)}
+    .badge::before{content:"";width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--primary))}
+    h1{margin-top:20px;font-size:clamp(38px,6vw,62px);line-height:1.05;letter-spacing:-.03em;color:var(--primary-dark)}
+    h1 span{display:block;background:linear-gradient(135deg,var(--primary) 0%,#5fa3e6 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{margin:20px auto 0;max-width:62ch;font-size:17px;line-height:1.75;color:var(--muted)}
+
+    .apps{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;padding:28px 0 56px}
+    .app-card{
+      background:rgba(255,255,255,.82); border:1px solid rgba(255,255,255,.9); border-radius:var(--radius);
+      box-shadow:var(--shadow); overflow:hidden; backdrop-filter:blur(10px);
+      display:flex; flex-direction:column;
+    }
+    .app-top{padding:28px 28px 24px;position:relative;overflow:hidden}
+    .app-top::after{content:"";position:absolute;width:180px;height:180px;right:-60px;top:-60px;background:radial-gradient(circle,rgba(142,197,252,.35),transparent 68%)}
+    .app-head{display:flex;gap:16px;align-items:center;position:relative;z-index:1}
+    .app-icon{
+      width:72px;height:72px;border-radius:20px;display:grid;place-items:center;flex:0 0 72px;
+      background:linear-gradient(135deg,#3b73c2 0%, #1e3a5f 100%); color:#fff; font-size:30px; font-weight:800;
+      box-shadow:0 12px 28px rgba(44,95,168,.28);
+    }
+    .app-icon img{width:100%;height:100%;object-fit:cover;border-radius:20px}
+    .app-kicker{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--primary);margin-bottom:4px}
+    .app-name{font-size:32px;line-height:1.1;letter-spacing:-.02em;color:var(--primary-dark)}
+    .app-desc{margin-top:16px;color:var(--muted);font-size:15px;line-height:1.75;position:relative;z-index:1}
+    .features{padding:0 28px 24px;display:grid;gap:12px;flex:1}
+    .feature{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:16px;background:#f7faff;border:1px solid rgba(44,95,168,.06)}
+    .ficon{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:rgba(44,95,168,.1);color:var(--primary);font-size:16px;font-weight:700;flex:0 0 34px}
+    .feature strong{display:block;font-size:14px;color:#1b2f45;margin-bottom:2px}
+    .feature span{display:block;font-size:13px;color:var(--muted);line-height:1.55}
+    .app-bottom{padding:22px 28px 28px;border-top:1px solid rgba(44,95,168,.08);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .file{font-size:13px;color:var(--muted)}
+    .file b{color:#41556f}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:16px;
+      text-decoration:none;font-weight:700;font-size:15px;color:#fff;
+      background:linear-gradient(135deg,#3b73c2 0%,var(--primary-dark) 100%);
+      box-shadow:0 14px 30px rgba(44,95,168,.32); transition:transform .2s ease,box-shadow .2s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 18px 36px rgba(44,95,168,.4)}
+    .btn:active{transform:translateY(0)}
+    .btn svg{flex:0 0 20px}
+
+    .note{margin:0 0 50px;padding:22px 24px;border-radius:20px;background:rgba(255,255,255,.65);border:1px solid rgba(44,95,168,.1);color:var(--muted);font-size:14px;line-height:1.7;text-align:center}
+    .note strong{color:var(--primary-dark)}
+    footer{padding:0 0 36px;color:#6b7f95;font-size:13px;text-align:center}
+
+    @media (max-width:900px){
+      .apps{grid-template-columns:1fr;max-width:680px;margin:0 auto}
+    }
+    @media (max-width:560px){
+      .wrap{width:min(1140px,calc(100% - 28px))}
+      .hero{padding-top:34px}
+      .app-top,.features,.app-bottom{padding-left:20px;padding-right:20px}
+      .app-name{font-size:28px}
+      .app-bottom{flex-direction:column;align-items:stretch;text-align:center}
+      .btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="badge">MOVIMIENTO MISIONERO MUNDIAL</div>
+      <h1>Apps MMM<span>Himnario y Doctrinario</span></h1>
+      <p class="lead">Descarga las aplicaciones oficiales en formato APK para Android. Cada app está diseñada para ser clara, moderna y fácil de usar, para acompañarte en la alabanza y el estudio.</p>
+    </section>
+
+    <section class="apps">
+      <article class="app-card">
+        <div class="app-top">
+          <div class="app-head">
+            <div class="app-icon"><img src="logo.png" alt="Logo HIMNOS 3M"></div>
+            <div>
+              <div class="app-kicker">APP DE ALABANZA</div>
+              <h2 class="app-name">HIMNOS 3M</h2>
+            </div>
+          </div>
+          <p class="app-desc">Tu himnario digital para leer himnos y coros del Movimiento Misionero Mundial. Una experiencia simple, rápida y cómoda para usar en cualquier momento.</p>
+        </div>
+        <div class="features">
+          <div class="feature">
+            <div class="ficon">♪</div>
+            <div><strong>Himnos y coros</strong><span>Accede al contenido completo organizado en secciones fáciles de navegar.</span></div>
+          </div>
+          <div class="feature">
+            <div class="ficon">⌕</div>
+            <div><strong>Búsqueda rápida</strong><span>Encuentra himnos o coros por número o título en segundos.</span></div>
+          </div>
+          <div class="feature">
+            <div class="ficon">♥</div>
+            <div><strong>Favoritos</strong><span>Guarda los himnos y coros que más uses para volver a ellos rápidamente.</span></div>
+          </div>
+          <div class="feature">
+            <div class="ficon">A</div>
+            <div><strong>Lectura cómoda</strong><span>Ajusta el tamaño de letra y elige entre varios temas de color.</span></div>
+          </div>
+        </div>
+        <div class="app-bottom">
+          <div class="file"><b>Archivo:</b> HIMNOS-3M.apk<br>Android 6.0 o superior</div>
+          <a class="btn" href="HIMNOS-3M.apk" download="HIMNOS-3M.apk">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10m0 0 4-4m-4 4-4-4M4 17v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Descargar Himnario
+          </a>
+        </div>
+      </article>
+
+      <article class="app-card">
+        <div class="app-top">
+          <div class="app-head">
+            <div class="app-icon">D3</div>
+            <div>
+              <div class="app-kicker">APP DE ESTUDIO</div>
+              <h2 class="app-name">Doctrinario 3M</h2>
+            </div>
+          </div>
+          <p class="app-desc">Una aplicación para consultar el contenido doctrinal del Movimiento Misionero Mundial de forma práctica, con una presentación clara para leer y estudiar donde estés.</p>
+        </div>
+        <div class="features">
+          <div class="feature">
+            <div class="ficon">📖</div>
+            <div><strong>Contenido doctrinal</strong><span>Consulta el doctrinario en tu dispositivo con acceso directo y práctico.</span></div>
+          </div>
+          <div class="feature">
+            <div class="ficon">☰</div>
+            <div><strong>Navegación clara</strong><span>Interfaz organizada para encontrar y leer el contenido con facilidad.</span></div>
+          </div>
+          <div class="feature">
+            <div class="ficon">A</div>
+            <div><strong>Lectura cómoda</strong><span>Diseñada para una lectura clara en pantalla, ideal para estudio personal.</span></div>
+          </div>
+          <div class="feature">
+            <div class="ficon">✦</div>
+            <div><strong>Práctica y ligera</strong><span>Llévala contigo en tu celular Android e instálala directamente por APK.</span></div>
+          </div>
+        </div>
+        <div class="app-bottom">
+          <div class="file"><b>Archivo:</b> Doctrinario3M.apk<br>Android</div>
+          <a class="btn" href="Doctrinario3M.apk" download="Doctrinario3M.apk">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10m0 0 4-4m-4 4-4-4M4 17v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Descargar Doctrinario
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <div class="note">
+      <strong>Instalación:</strong> al descargar un APK, Android puede pedir permiso para instalar desde la fuente utilizada. Acepta el permiso para completar la instalación.
+    </div>
+  </main>
+
+  <footer class="wrap">
+    Movimiento Misionero Mundial · Página de descargas
+  </footer>
+</body>
+</html>
